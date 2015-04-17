@@ -16,4 +16,4 @@ class Result(db.Model):
 		self.result_no_stop_words = result_no_stop_words
 
 	def __repr__(self):
-		return '<id {}>'.format(self.id
+		return '<id {}>'.format(self.id)
