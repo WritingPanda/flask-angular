@@ -1,40 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="WordcountApp">
 <head>
 	<title>WordCount</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
 	<style>
 		.container {
 			max-width: 1000px;
 		}
 	</style>
 </head>
-<body>
+<body ng-controller="WordcountController">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-5 col-sm-offset-1">
 				<h1>WordCount 3000</h1>
 				<br />
-				<form action="/" method="POST" role="form">
+				<form ng-submit="getResults()" role="form">
 					<div class="form-group">
-						<input type="text" name="url" class="form-control" id="url-box" placeholder= "Enter URL..." style="max-width: 300px;">
+						<input type="text" ng-model="input_url" name="url" class="form-control" id="url-box" placeholder= "Enter URL..." style="max-width: 300px;" required>
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
-				<br />
-				{% for error in errors %}
-				<h4>{{ error }}</h4>
-				{% endfor %}
-				<br />
 			</div>
+			<br />
 			<div class="col-sm-5 col-sm-offset-1">
-				{% if results %}
 				<h2>Frequencies</h2>
 				<br />
 				<div id="results">
-					<table class="table table-striped" style="max-width: 300px;">
+					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>Word</th>
@@ -42,20 +36,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for result in results %}
-							<tr>
-								<td>{{ result[0] }}</td>
-								<td>{{ result[1] }}</td>
+							{% raw %}
+							<tr ng-repeat="(key, value) in wordcounts">
+								<td>{{key}}</td>
+								<td>{{value}}</td>
 							</tr>
-							{% endfor %}
+							{% endraw %}
 						</tbody>
 					</table>
 				</div>
-				{% endif %}
 			</div>
 		</div>
 	</div>
-	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<script src="{{ url_for('static', filename='main.js') }}"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </body>
 </html>
