@@ -2,6 +2,8 @@
 
 A place to learn and experiment with Flask, AngularJS, and PostgreSQL.
 
+Here is what I am building: A Flask app that calculates word-frequency pairs based on the text from a given URL.
+
 I am learning this stuff while on vacation in China as of April 15. 
 
 Do developers often think about coding while on vacation? I don't know.
